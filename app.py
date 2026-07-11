@@ -1,6 +1,13 @@
 from flask import Flask,render_template
+from flask_sqlalchemy import SQLAlchemy 
+
 
 app = Flask(__name__)
+app.config.from_object('config')
+
+#DBを作成してからモデルを読み込む
+db = SQLAlchemy(app) 
+from models import event
 
 @app.route('/')
 def idnex():
