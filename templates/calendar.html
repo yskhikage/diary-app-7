@@ -10,19 +10,22 @@
 </head>
 <body>
     <div id="calendar"></div>
-    <script>
-        let calendarEl = document.getElementById('calendar');
-        let calendar = new FullCalendar.Calendar(calendarEl, {
-            events: [
+<script>
+    const calendarEl = document.getElementById('calendar');
+
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        events: [
             {% for event in events %}
             {
-                title: '{{ event.title }}',
-                date: '{{ event.date  }}',
-            },
+                title: {{ event.name | tojson }},
+                start: {{ event.date.isoformat() | tojson }}
+            }{% if not loop.last %},{% endif %}
             {% endfor %}
-            ]
-        });
-        calendar.render();
-    </script>
+        ]
+    });
+
+    calendar.render();
+</script>
+    
 </body>
 </html>
