@@ -18,7 +18,8 @@
             {% for event in events %}
             {
                 title: {{ event.name | tojson }},
-                start: {{ event.date.isoformat() | tojson }}
+                start: {{ event.date.isoformat() | tojson }},
+                url:{{ url_for('calendar_id',id=event.id) | tojson}}
             }{% if not loop.last %},{% endif %}
             {% endfor %}
         ]

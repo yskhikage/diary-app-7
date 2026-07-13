@@ -8,7 +8,7 @@ app.config.from_object('config')
 
 #DBを作成してからモデルを読み込む
 db = SQLAlchemy(app) 
-from models import event
+from models import Event
 
 
 @app.route('/')
@@ -26,11 +26,19 @@ def idnex():
     #}
 #]
 
-@app.route('/calender')
+@app.route('/calendar')
 def calender():
 #DB取得
-    events = event.query.all()
+    events = Event.query.all()
     return render_template('calendar.html',events=events)
+
+
+#各ページごとのルーティング
+@app.route('/calendar/<int:id>')
+def calendar_id(id):
+    one_event = Event.query.get_or_404(id)
+    return render_template('detail.html',one_event=one_event)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
