@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.js"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <nav>
+        <ul class="gnav-navi-1">
+            <li>top</li>
+            <li><a href="{{ url_for('register')}}">追加</a></li>
+        </ul>
+    </nav>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

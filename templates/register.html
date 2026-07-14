@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>登録画面</title>
+{% endblock %}
+{% block body %}
+    <p>登録画面です</p>
+<form method="POST">
+    <!-- CSRF対策(トークンが生成される) -->
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.name.label }} {{ form.name() }}
+    </div>
+    <div>
+        {{ form.date.label }} {{ form.date() }}
+    </div>
+    {{ form.submit() }}
+</form>
+    <a href="{{url_for('calender')}}">戻る</a>
+{% endblock %}
