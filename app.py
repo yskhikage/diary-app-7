@@ -77,6 +77,13 @@ def register():
     print('formを受け取れてないっすね')
     return render_template("register.html", form=form)
 
+@app.route('/calendar/<int:id>/delete',methods=['POST'])
+def delete(id):
+    event=Event.query.get(id)
+    db.session.delete(event)
+    db.session.commit()
+    return redirect(url_for('calender'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

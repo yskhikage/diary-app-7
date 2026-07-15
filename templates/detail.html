@@ -3,9 +3,22 @@
     <title>詳細画面:{{ one_event.id }}</title>
 {% endblock %}
 {% block body %}
-    <p>詳細画面だよー</p>
-    <p>{{ one_event.name }}</p>
-    <p>{{ one_event.date }}</p>
 
-    <a href="{{url_for('calender')}}">戻る</a>
+<div class="container">
+    <p class="h3 mb-4">詳細画面</p>
+        <div class="card mx-auto" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ one_event.name  }}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">{{ one_event.date }}</h6>
+                <p class="card-text">{{one_event.name}}があったみたいですね</p>
+                <form action="{{url_for('delete',id=one_event.id) }}" method="POST">
+                    <input class="btn btn-danger btn-sm" type="submit" value="削除">
+                </form>
+            </div>
+        </div>
+        <a href="{{url_for('calender')}}">戻る</a>
+    </div>
+</div>
+
+
 {% endblock %}
