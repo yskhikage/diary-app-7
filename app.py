@@ -82,19 +82,23 @@ def delete(id):
     db.session.commit()
     return redirect(url_for('calender'))
 
-
+#編集
 @app.route('/calendar/<int:id>/edit',methods=['GET','POST'])
 def edit_event(id):
     event=Event.query.get(id)
     form=RegistrationForm()
-    if form.validate_on_submit():
-        name=form.name.data
-        date = form.date.data
-        event = Event(name=name,date=date,updated_at=datetime.now())
-        db.session.merge(form)
-        db,session.commit()
-        return redirect(url_for("calender"))
-    print('編集画面では項目は受け取れていません')
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            event.name=form.name.data
+            event.date = form.date.data
+            event.updated_at=datetime.now()
+            db.session.commit()
+            return redirect(url_for("calender"))
+    else:
+        #GETの場合
+        form.name.data=event.name
+        form.date.data=event.date
+        
     return render_template("register.html", form=form,form_title='編集画面',event=event)
 
 
